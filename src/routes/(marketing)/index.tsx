@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 import GradientOrb from '~/components/gradient-orb';
+import { TopBanner } from '~/components/TopBanner';
 import { BenefitsSection } from '~/components/landing/BenefitsSection';
 import { FaqSection } from '~/components/landing/FaqSection';
 import { HowItWorksSection } from '~/components/landing/HowItWorksSection';
@@ -28,6 +29,7 @@ function RouteComponent() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background">
+      <TopBanner />
       {/* Hero Section */}
       <main className="container relative z-0 mx-auto flex flex-col items-center px-4 pt-20 text-center md:pt-32">
         <GradientOrb className="-translate-x-1/2 absolute top-0 left-1/2 z-[-1] transform" />
