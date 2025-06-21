@@ -1,7 +1,6 @@
-
 <div align="center">
-  <h1>Constructa Starter Min</h1>
-  <p><strong>A modern Web App Starter Kit based on Tanstack Starter using React, shadcn/ui and Tailwind CSS 4</strong></p>
+  <h1>Macro Calculator</h1>
+  <p><strong>A Macro Calculator app built as a background agent example for instructa.ai courses. It uses Tanstack Starter, React, shadcn/ui, and Tailwind CSS.</strong></p>
   
   [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org/)
   [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
@@ -26,7 +25,7 @@
 
 ```bash
 # Clone the starter template (replace with your repo)
-npx gitpick git@github.com:instructa/constructa-starter-min.git my-app
+npx gitpick git@github.com:instructa-pro/macro-calculator.git my-app
 cd my-app
 ```
 
@@ -59,15 +58,16 @@ pnpm biome:fix:unsafe # Fix code issues (unsafe)
 
 ```
 src/
-├── app/
-│   ├── routes/           # File-based routing
-│   │   ├── __root.tsx   # Root layout
-│   │   ├── index.tsx    # Home page
-│   │   └── api/         # API routes
-│   └── styles/          # Global styles
-├── components/
-│   └── ui/              # shadcn/ui components
-└── utils/               # Utility functions
+├── components/         # React components
+│   ├── ui/             # shadcn/ui components
+│   ├── landing/        # Components for the landing page
+│   └── macro/          # Components for macro calculator
+├── lib/                # Libraries and utilities
+├── routes/             # File-based routing
+│   ├── __root.tsx      # Root layout
+│   └── (marketing)/    # Marketing pages route group
+│       └── index.tsx   # Home page
+└── styles/             # Global styles
 ```
 
 ## 🎯 Core Technologies
@@ -92,10 +92,10 @@ npx shadcn@latest add input
 ### Tailwind CSS
 - Uses Tailwind CSS v4 with modern CSS-first configuration
 - Configured in `app.config.ts`
-- Global styles in `src/app/styles/`
+- Global styles in `src/styles/`
 
 ### TypeScript
-- **Path aliases**: `@` resolves to the root `./` directory
+- **Path aliases**: `~` resolves to the `src/` directory
 - **Route files**: Must use `.tsx` extension
 
 ## 🚀 Deployment
