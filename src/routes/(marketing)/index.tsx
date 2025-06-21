@@ -7,6 +7,7 @@ import { BenefitsSection } from '~/components/landing/BenefitsSection';
 import { FaqSection } from '~/components/landing/FaqSection';
 import { HowItWorksSection } from '~/components/landing/HowItWorksSection';
 import { TestimonialsSection } from '~/components/landing/TestimonialsSection';
+import { PricingCta } from '~/components/landing/PricingCta';
 import { MacroCalculatorForm } from '~/components/macro/MacroCalculatorForm';
 import { MacroResultsDisplay } from '~/components/macro/MacroResults';
 import { type MacroResults } from '~/lib/macro-calculator';
@@ -53,6 +54,7 @@ function RouteComponent() {
       <BenefitsSection />
       <HowItWorksSection />
       <TestimonialsSection />
+      <PricingCta />
       <FaqSection />
     </div>
   );
