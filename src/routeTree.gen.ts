@@ -15,6 +15,7 @@ import type { CreateFileRoute, FileRoutesByPath } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as marketingRouteRouteImport } from './routes/(marketing)/route'
 import { Route as marketingIndexRouteImport } from './routes/(marketing)/index'
+import { Route as marketingPricingRouteImport } from './routes/(marketing)/pricing'
 import { Route as marketingDocsRouteImport } from './routes/(marketing)/docs'
 import { Route as marketingAboutRouteImport } from './routes/(marketing)/about'
 
@@ -28,6 +29,12 @@ const marketingRouteRoute = marketingRouteRouteImport.update({
 const marketingIndexRoute = marketingIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => marketingRouteRoute,
+} as any)
+
+const marketingPricingRoute = marketingPricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => marketingRouteRoute,
 } as any)
 
@@ -66,6 +73,13 @@ declare module '@tanstack/react-router' {
       path: '/docs'
       fullPath: '/docs'
       preLoaderRoute: typeof marketingDocsRouteImport
+      parentRoute: typeof marketingRouteRouteImport
+    }
+    '/(marketing)/pricing': {
+      id: '/(marketing)/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof marketingPricingRouteImport
       parentRoute: typeof marketingRouteRouteImport
     }
     '/(marketing)/': {
@@ -107,6 +121,15 @@ declare module './routes/(marketing)/docs' {
     FileRoutesByPath['/(marketing)/docs']['fullPath']
   >
 }
+declare module './routes/(marketing)/pricing' {
+  const createFileRoute: CreateFileRoute<
+    '/(marketing)/pricing',
+    FileRoutesByPath['/(marketing)/pricing']['parentRoute'],
+    FileRoutesByPath['/(marketing)/pricing']['id'],
+    FileRoutesByPath['/(marketing)/pricing']['path'],
+    FileRoutesByPath['/(marketing)/pricing']['fullPath']
+  >
+}
 declare module './routes/(marketing)/index' {
   const createFileRoute: CreateFileRoute<
     '/(marketing)/',
@@ -122,12 +145,14 @@ declare module './routes/(marketing)/index' {
 interface marketingRouteRouteChildren {
   marketingAboutRoute: typeof marketingAboutRoute
   marketingDocsRoute: typeof marketingDocsRoute
+  marketingPricingRoute: typeof marketingPricingRoute
   marketingIndexRoute: typeof marketingIndexRoute
 }
 
 const marketingRouteRouteChildren: marketingRouteRouteChildren = {
   marketingAboutRoute: marketingAboutRoute,
   marketingDocsRoute: marketingDocsRoute,
+  marketingPricingRoute: marketingPricingRoute,
   marketingIndexRoute: marketingIndexRoute,
 }
 
@@ -139,11 +164,13 @@ export interface FileRoutesByFullPath {
   '/': typeof marketingIndexRoute
   '/about': typeof marketingAboutRoute
   '/docs': typeof marketingDocsRoute
+  '/pricing': typeof marketingPricingRoute
 }
 
 export interface FileRoutesByTo {
   '/about': typeof marketingAboutRoute
   '/docs': typeof marketingDocsRoute
+  '/pricing': typeof marketingPricingRoute
   '/': typeof marketingIndexRoute
 }
 
@@ -152,19 +179,21 @@ export interface FileRoutesById {
   '/(marketing)': typeof marketingRouteRouteWithChildren
   '/(marketing)/about': typeof marketingAboutRoute
   '/(marketing)/docs': typeof marketingDocsRoute
+  '/(marketing)/pricing': typeof marketingPricingRoute
   '/(marketing)/': typeof marketingIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/docs'
+  fullPaths: '/' | '/about' | '/docs' | '/pricing'
   fileRoutesByTo: FileRoutesByTo
-  to: '/about' | '/docs' | '/'
+  to: '/about' | '/docs' | '/pricing' | '/'
   id:
     | '__root__'
     | '/(marketing)'
     | '/(marketing)/about'
     | '/(marketing)/docs'
+    | '/(marketing)/pricing'
     | '/(marketing)/'
   fileRoutesById: FileRoutesById
 }
@@ -195,6 +224,7 @@ export const routeTree = rootRoute
       "children": [
         "/(marketing)/about",
         "/(marketing)/docs",
+        "/(marketing)/pricing",
         "/(marketing)/"
       ]
     },
@@ -204,6 +234,10 @@ export const routeTree = rootRoute
     },
     "/(marketing)/docs": {
       "filePath": "(marketing)/docs.tsx",
+      "parent": "/(marketing)"
+    },
+    "/(marketing)/pricing": {
+      "filePath": "(marketing)/pricing.tsx",
       "parent": "/(marketing)"
     },
     "/(marketing)/": {
